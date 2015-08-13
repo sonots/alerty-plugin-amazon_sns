@@ -1,0 +1,6 @@
+log_path: STDOUT
+log_level: debug
+plugins:
+  - type: amazon_sns
+    topic_arn: arn:aws:sns:ap-northeast-1:318088369558:alert
+    subject: "FAILURE: [${hostname}] ${command}"
