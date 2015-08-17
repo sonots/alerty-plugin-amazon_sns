@@ -24,6 +24,7 @@ class Alerty
       def alert(record)
         message = record[:output]
         subject = expand_placeholder(@subject, record)
+        subject = subject[0..98] # SNS constraint, must be less than 100 character long
         retries = 0
         begin
           @client.publish(topic_arn: @topic_arn, message: message, subject: subject)
