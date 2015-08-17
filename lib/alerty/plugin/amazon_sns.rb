@@ -42,7 +42,7 @@ class Alerty
       private
 
       def expand_placeholder(str, record)
-        str.gsub('${command}', record[:command]).gsub!('${hostname}', record[:hostname])
+        str.gsub('${command}', record[:command]).gsub('${hostname}', record[:hostname])
       end
     end
   end
