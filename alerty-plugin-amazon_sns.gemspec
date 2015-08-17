@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "alerty-plugin-amazon_sns"
-  spec.version       = "0.0.2"
+  spec.version       = "0.0.3"
   spec.authors       = ["Naotoshi Seo"]
   spec.email         = ["sonots@gmail.com"]
 
