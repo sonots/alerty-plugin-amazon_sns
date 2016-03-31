@@ -1,3 +1,9 @@
+# 0.0.4 (2016/03/31)
+
+Enhancements:
+
+* Guess aws_region from topic_arn as default
+
 # 0.0.3 (2015/08/17)
 
 Fixes:
