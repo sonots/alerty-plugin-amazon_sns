@@ -2,5 +2,5 @@ log_path: STDOUT
 log_level: debug
 plugins:
   - type: amazon_sns
-    topic_arn: arn:aws:sns:ap-northeast-1:318088369558:alert
+    topic_arn: arn:aws:sns:ap-northeast-1:<account_id>:<topic_name>
     subject: "FAILURE: [${hostname}] ${command}"

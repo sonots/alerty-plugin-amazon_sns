@@ -12,7 +12,7 @@ class Alerty
         # see http://docs.aws.amazon.com/sdkforruby/api/Aws/SNS/Client.html
         # ENV or ~/.aws/credentials or instance profile on EC2, or alerty config file
         params = {}
-        params[:region] = config.aws_region if config.aws_region
+        params[:region] = config.aws_region || guess_region(config.topic_arn)
         params[:access_key_id] = config.aws_access_key_id if config.aws_access_key_id
         params[:secret_access_key] = config.aws_secret_access_key if config.aws_secret_access_key
         @client = Aws::SNS::Client.new(params)
@@ -41,6 +41,11 @@ class Alerty
       end
 
       private
+
+      def guess_region(topic_arn)
+        # arn:aws:sns:ap-northeast-1:<account_id>:<topic_name>
+        topic_arn.split(':')[3]
+      end
 
       def expand_placeholder(str, record)
         str.gsub('${command}', record[:command]).gsub('${hostname}', record[:hostname])
