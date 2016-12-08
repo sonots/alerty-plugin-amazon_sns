@@ -1,3 +1,9 @@
+# 0.0.5 (2016/12/08)
+
+Changes:
+
+* spec.add_runtime_dependency "aws-sdk", "< 3.0.0"
+
 # 0.0.4 (2016/03/31)
 
 Enhancements:
