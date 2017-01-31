@@ -17,6 +17,7 @@ class Alerty
         params[:secret_access_key] = config.aws_secret_access_key if config.aws_secret_access_key
         @client = Aws::SNS::Client.new(params)
         @subject = config.subject
+        @message = config.message
         @topic_arn = config.topic_arn
         @num_retries = config.num_retries || 3
       end
@@ -42,7 +43,7 @@ class Alerty
       private
 
       def get_message(record)
-        message = record[:output]
+        message = @message.nil? ? record[:output] : expand_placeholder(@message, record)
         message = ' ' if message.empty? # SNS constraint, SNS errors if message is empty
         message
       end
@@ -58,7 +59,10 @@ class Alerty
       end
 
       def expand_placeholder(str, record)
-        str.gsub('${command}', record[:command]).gsub('${hostname}', record[:hostname])
+        replaced = str.gsub('${command}', record[:command])
+        replaced.gsub!('${hostname}', record[:hostname])
+        replaced.gsub!('${output}', record[:output])
+        replaced
       end
     end
   end
