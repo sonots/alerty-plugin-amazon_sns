@@ -22,9 +22,8 @@ class Alerty
       end
 
       def alert(record)
-        message = record[:output]
-        subject = expand_placeholder(@subject, record)
-        subject = subject[0..98] # SNS constraint, must be less than 100 character long
+        subject = get_subject(record)
+        message = get_message(record)
         retries = 0
         begin
           @client.publish(topic_arn: @topic_arn, message: message, subject: subject)
@@ -41,6 +40,17 @@ class Alerty
       end
 
       private
+
+      def get_message(record)
+        message = record[:output]
+        message = ' ' if message.empty? # SNS constraint, SNS errors if message is empty
+        message
+      end
+
+      def get_subject(record)
+        subject = expand_placeholder(@subject, record)
+        subject = subject[0..98] # SNS constraint, must be less than 100 character long
+      end
 
       def guess_region(topic_arn)
         # arn:aws:sns:ap-northeast-1:<account_id>:<topic_name>
