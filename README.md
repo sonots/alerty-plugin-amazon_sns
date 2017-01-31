@@ -22,7 +22,8 @@ Or install it yourself as:
 
 * **type**: must be `amazon_sns`
 * **topc_arn**: Amazon SNS topic name
-* **subject**: subject of alert. `${command}` is replaced with a given command, `${hostname}` is replaced with the hostname ran a command
+* **subject**: subject of alert. `${command}` is replaced with a given command, `${hostname}` is replaced with the hostname ran the command, `${output}` is replaced with the output.
+* **message**: message of alert. `${command}` is replaced with a given command, `${hostname}` is replaced with the hostname ran the command, `${output}` is replaced with the output. The default is `${output}`.
 * **aws_region**: AWS Region. (default: guess from topic_arn, like arn:aws:sns:us-east-1:<account_id>:<topic_name> => us-east-1)
 * **aws_access_key_id**: Credential key id (default: ENV['AWS_SECRET_KEY_id'] or ~/.aws/credentials or instance profile on EC2)
 * **aws_secret_access_key**: Credential secret access_key (default: ENV['AWS_SECRET_ACCESS_KEY'] or ~/.aws/credentials or instance profile on EC2)
