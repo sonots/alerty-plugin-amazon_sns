@@ -1,2 +1,2 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'alerty/plugin/ikachan'
+require 'alerty/plugin/amazon_sns'
