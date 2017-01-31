@@ -1,3 +1,10 @@
+# 0.0.6 (2017/01/31)
+
+Changes:
+
+* Replace message with a white space if empty to avoid SNS empty message errors
+* Add message config
+
 # 0.0.5 (2016/12/08)
 
 Changes:
